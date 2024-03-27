@@ -1,5 +1,7 @@
 package com.shazahmed.paymentservice.services;
 
+import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ public class PaymentService {
         this.paymentGatewaySelectionStrategy = paymentGatewaySelectionStrategy;
     }
 
-    public String initiatePayment(){
+    public String initiatePayment() throws RazorpayException, StripeException {
         return paymentGatewaySelectionStrategy
                 .getPaymentGateway()
                 .generateLink();

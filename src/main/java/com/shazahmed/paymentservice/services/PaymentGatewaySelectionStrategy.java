@@ -1,26 +1,26 @@
 package com.shazahmed.paymentservice.services;
 
-import com.shazahmed.paymentservice.services.paymentgateways.PaymentGateway;
-import com.shazahmed.paymentservice.services.paymentgateways.RazorpayPaymentGateway;
-import com.shazahmed.paymentservice.services.paymentgateways.StripePaymentGateway;
+import com.shazahmed.paymentservice.thirdpartyclients.paymentgateways.PaymentGateway;
+import com.shazahmed.paymentservice.thirdpartyclients.paymentgateways.RazorpayPaymentGatewayClient;
+import com.shazahmed.paymentservice.thirdpartyclients.paymentgateways.StripePaymentGatewayClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PaymentGatewaySelectionStrategy {
-    private RazorpayPaymentGateway razorpayPaymentGateway;
-    private StripePaymentGateway stripePaymentGateway;
+    private RazorpayPaymentGatewayClient razorpay;
+    private StripePaymentGatewayClient stripe;
 
     @Autowired
-    public PaymentGatewaySelectionStrategy(RazorpayPaymentGateway razorpayPaymentGateway,
-                                           StripePaymentGateway stripePaymentGateway) {
-        this.razorpayPaymentGateway = razorpayPaymentGateway;
-        this.stripePaymentGateway = stripePaymentGateway;
+    public PaymentGatewaySelectionStrategy(RazorpayPaymentGatewayClient razorpay,
+                                           StripePaymentGatewayClient stripe) {
+        this.razorpay = razorpay;
+        this.stripe = stripe;
     }
 
-    public PaymentGateway getPaymentGateway(){
-        //logic
-        //return razorpayPaymentGateway;
-        return stripePaymentGateway;
+    public PaymentGateway getPaymentGateway() {
+        //selection logic to be written here
+
+        return razorpay;
     }
 }
